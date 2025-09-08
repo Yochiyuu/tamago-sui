@@ -52,10 +52,10 @@ export function WardrobeManager({
             <img
               src={equippedAccessory.image_url}
               alt={equippedAccessory.name}
-              className="w-12 h-12 rounded-md border p-1 bg-white"
+              className="w-12 h-12 rounded-md border p-1 bg-black"
             />
-            <p className="text-sm font-semibold">
-              Equipped: <strong>{equippedAccessory.name}</strong>
+            <p className="text-sm font-semibold text-primary">
+              Equipped: {equippedAccessory.name}
             </p>
           </div>
           <Button
@@ -131,4 +131,4 @@ export function WardrobeManager({
       </div>
     </CardFooter>
   );
-}
+} 

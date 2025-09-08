@@ -1,8 +1,8 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
+import type { PetStruct, RawPetStructFields } from "@/types/Pet";
 import type { SuiObjectResponse } from "@mysten/sui/client";
-import type { RawPetStructFields, PetStruct } from "@/types/Pet";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -21,7 +21,7 @@ export function getSuiObjectFields<T>(object: SuiObjectResponse): T | null {
 }
 
 export function normalizeSuiPetObject(
-  object: SuiObjectResponse,
+  object: SuiObjectResponse
 ): PetStruct | null {
   const fields = getSuiObjectFields<RawPetStructFields>(object);
   if (!fields) return null;

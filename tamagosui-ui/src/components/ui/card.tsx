@@ -1,53 +1,64 @@
-import * as React from "react"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
-import { cn } from "@/lib/utils"
-
+// Komponen Card
 function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card"
       className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
+        "bg-black/20 backdrop-blur-sm rounded-2xl border border-blue-500/50 " +
+          "shadow-lg shadow-blue-500/20 relative overflow-hidden " +
+          "transition-all duration-300 hover:shadow-blue-400/40",
         className
       )}
       {...props}
     />
-  )
+  );
 }
 
+// Komponen CardHeader
 function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-header"
       className={cn(
-        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
+        "grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 " +
+          "has-data-[slot=card-action]:grid-cols-[1fr_auto] " +
+          "border-b border-blue-500/30 pb-4",
         className
       )}
       {...props}
     />
-  )
+  );
 }
 
+// Komponen CardTitle
 function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <div
+    <h2
       data-slot="card-title"
-      className={cn("leading-none font-semibold", className)}
+      className={cn(
+        "text-2xl font-bold tracking-tight text-white drop-shadow-md",
+        className
+      )}
       {...props}
     />
-  )
+  );
 }
 
+// Komponen CardDescription
 function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <div
+    <p
       data-slot="card-description"
-      className={cn("text-muted-foreground text-sm", className)}
+      className={cn("text-sm text-gray-300", className)}
       {...props}
     />
-  )
+  );
 }
 
+// Komponen CardAction
 function CardAction({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -58,35 +69,41 @@ function CardAction({ className, ...props }: React.ComponentProps<"div">) {
       )}
       {...props}
     />
-  )
+  );
 }
 
+// Komponen CardContent
 function CardContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-content"
-      className={cn("px-6", className)}
+      className={cn("px-0 text-white", className)}
       {...props}
     />
-  )
+  );
 }
 
+// Komponen CardFooter
 function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-footer"
-      className={cn("flex items-center px-6 [.border-t]:pt-6", className)}
+      className={cn(
+        "flex items-center px-0 border-t border-blue-500/30 pt-4",
+        className
+      )}
       {...props}
     />
-  )
+  );
 }
 
+// Ekspor semua komponen
 export {
   Card,
+  CardTitle,
   CardHeader,
   CardFooter,
-  CardTitle,
   CardAction,
   CardDescription,
   CardContent,
-}
+};

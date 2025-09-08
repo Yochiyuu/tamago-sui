@@ -9,7 +9,7 @@ export default function HomePage() {
   const { data: ownedPet, isPending: isOwnedPetLoading } = useQueryOwnedPet();
 
   return (
-    <div className="min-h-screen flex flex-col bg-secondary">
+    <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow flex items-center justify-center p-4 pt-24">
         {!currentAccount ? (

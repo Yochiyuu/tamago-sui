@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { Loader2Icon } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 
 // Helper component for action buttons to avoid repetition
@@ -10,6 +9,7 @@ type ActionButtonProps = {
   isPending: boolean;
   label: string;
   icon: ReactNode;
+  className?: string; // ✅ tambahin supaya gak error di PetComponent
 };
 
 export function ActionButton({
@@ -18,12 +18,13 @@ export function ActionButton({
   isPending,
   label,
   icon,
+  className,
 }: ActionButtonProps) {
   return (
     <Button
       onClick={onClick}
       disabled={disabled}
-      className="w-full cursor-pointer"
+      className={`w-full cursor-pointer ${className || ""}`}
     >
       {isPending ? (
         <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
