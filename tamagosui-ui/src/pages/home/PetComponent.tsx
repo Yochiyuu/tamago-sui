@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import {
-  CoinsIcon,
   HeartIcon,
-  StarIcon,
   Loader2Icon,
   BatteryIcon,
   DrumstickIcon,
@@ -11,15 +9,11 @@ import {
   BriefcaseIcon,
   ZapIcon,
   ChevronUpIcon,
-  ShirtIcon,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
-  Tooltip,
-  TooltipContent,
   TooltipProvider,
-  TooltipTrigger,
 } from "@/components/ui/tooltip";
 
 import { StatDisplay } from "./components/StatDisplay";
