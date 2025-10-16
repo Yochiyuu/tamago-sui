@@ -59,6 +59,7 @@ const AboutSection = () => (
         <p className="text-lg text-slate-400 max-w-3xl mx-auto mb-16">
           TamagoSUI bukan sekadar game. Ini adalah demonstrasi kepemilikan aset digital yang sesungguhnya di atas blockchain Sui.
         </p>
+
         <div className="grid md:grid-cols-2 gap-8 text-left">
           <div className="bg-slate-900/50 p-6 rounded-lg border border-slate-700">
             <div className="flex items-center gap-4 mb-4">
@@ -82,6 +83,7 @@ const AboutSection = () => (
     </motion.div>
   </section>
 );
+
 
 const InstructionsSection = () => (
     <section id="instructions" className="min-h-screen flex items-center justify-center">
