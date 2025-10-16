@@ -110,18 +110,24 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-/* src/app/globals.css */
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    background-image: url('https://media1.tenor.com/m/MuI46Im4KgkAAAAd/anime-dark-blue.gif');
+    /* ✅ BAGIAN INI SUDAH DIPERBARUI */
+    background-color: #020617; /* Warna fallback jika gradien tidak didukung */
+    background-image: linear-gradient(180deg, #020617 0%, #0F172A 50%, #020617 100%);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* Opsional: membuat GIF tidak ikut bergulir */
-    @apply text-white; /* Tetap pertahankan warna teks */
+    background-attachment: fixed;
+    @apply text-white;
   }
 }
