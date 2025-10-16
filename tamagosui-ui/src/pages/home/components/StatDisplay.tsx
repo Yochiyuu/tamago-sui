@@ -11,12 +11,12 @@ type StatDisplayProps = {
   icon: ReactNode;
   label: string;
   value: number;
-  max: number; // ✅ tambahin max supaya bisa dipakai di PetComponent
-  className?: string; // ✅ opsional kalau mau kirim className
+  max: number; // ✅ Tambahkan 'max'
+  className?: string;
 };
 
 export function StatDisplay({ icon, label, value, max, className }: StatDisplayProps) {
-  const percentage = (value / max) * 100;
+  const percentage = (value / max) * 100; // ✅ Hitung persentase
 
   return (
     <Tooltip>
@@ -28,7 +28,7 @@ export function StatDisplay({ icon, label, value, max, className }: StatDisplayP
       </TooltipTrigger>
       <TooltipContent>
         <p>
-          {label}: {value} / {max}
+          {label}: {Math.round(value)} / {max}
         </p>
       </TooltipContent>
     </Tooltip>

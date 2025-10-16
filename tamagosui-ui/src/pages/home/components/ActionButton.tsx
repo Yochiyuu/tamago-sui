@@ -9,7 +9,7 @@ type ActionButtonProps = {
   isPending: boolean;
   label: string;
   icon: ReactNode;
-  className?: string; // ✅ tambahin supaya gak error di PetComponent
+  className?: string; // ✅ Tambahkan ini
 };
 
 export function ActionButton({
@@ -24,7 +24,7 @@ export function ActionButton({
     <Button
       onClick={onClick}
       disabled={disabled}
-      className={`w-full cursor-pointer ${className || ""}`}
+      className={`w-full cursor-pointer ${className || ""}`} // ✅ Gunakan di sini
     >
       {isPending ? (
         <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />

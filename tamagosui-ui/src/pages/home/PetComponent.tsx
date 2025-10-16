@@ -110,10 +110,6 @@ export default function PetComponent({ pet }: PetDashboardProps) {
       </div>
     );
 
-  // --- Hapus isAnyActionPending, gunakan kondisi spesifik per tombol ---
-  // const isAnyActionPending = isFeeding || isPlaying || isSleeping || isWorking || isLevelingUp;
-
-  // --- Button Disable Logic (Sesuai Mentor) ---
   const canFeed =
     !pet.isSleeping &&
     pet.stats.hunger < gameBalance.max_stat &&
@@ -189,7 +185,7 @@ export default function PetComponent({ pet }: PetDashboardProps) {
             <div className="space-y-3">
               <Button
                 onClick={() => mutateLevelUp({ petId: pet.id })}
-                disabled={!canLevelUp || isLevelingUp} // Ubah ini
+                disabled={!canLevelUp || isLevelingUp} 
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg flex items-center justify-center transition-all duration-200"
               >
                 {isLevelingUp ? (
@@ -202,7 +198,7 @@ export default function PetComponent({ pet }: PetDashboardProps) {
 
               <ActionButton
                 onClick={() => mutateFeedPet({ petId: pet.id })}
-                disabled={!canFeed || isFeeding} // Ubah ini
+                disabled={!canFeed || isFeeding}
                 isPending={isFeeding}
                 label="Feed"
                 icon={<DrumstickIcon className="w-5 h-5" />}
@@ -210,7 +206,7 @@ export default function PetComponent({ pet }: PetDashboardProps) {
               />
               <ActionButton
                 onClick={() => mutatePlayWithPet({ petId: pet.id })}
-                disabled={!canPlay || isPlaying} // Ubah ini
+                disabled={!canPlay || isPlaying}
                 isPending={isPlaying}
                 label="Play"
                 icon={<PlayIcon className="w-5 h-5" />}
@@ -218,7 +214,7 @@ export default function PetComponent({ pet }: PetDashboardProps) {
               />
               <ActionButton
                 onClick={() => mutateWorkForCoins({ petId: pet.id })}
-                disabled={!canWork || isWorking} // Ubah ini
+                disabled={!canWork || isWorking}
                 isPending={isWorking}
                 label="Work"
                 icon={<BriefcaseIcon className="w-5 h-5" />}
@@ -241,7 +237,7 @@ export default function PetComponent({ pet }: PetDashboardProps) {
               ) : (
                 <Button
                   onClick={() => mutateLetPetSleep({ petId: pet.id })}
-                  disabled={isSleeping} // Ubah ini
+                  disabled={isSleeping}
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg flex items-center justify-center transition-all duration-200"
                 >
                   {isSleeping ? (
@@ -255,11 +251,10 @@ export default function PetComponent({ pet }: PetDashboardProps) {
             </div>
           </div>
 
-          {/* Wardrobe Section */}
           <div className="mt-4">
             <WardrobeManager
               pet={pet}
-              isAnyActionPending={isFeeding || isPlaying || isWorking || isSleeping} // Ubah ini
+              isAnyActionPending={isFeeding || isPlaying || isWorking || isSleeping}
             />
           </div>
         </GlassPanel>
