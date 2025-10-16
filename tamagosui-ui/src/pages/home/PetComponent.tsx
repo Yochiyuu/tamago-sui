@@ -34,7 +34,7 @@ type PetDashboardProps = {
   pet: PetStruct;
 };
 
-// --- Glass Panel Custom ---
+// ✅ Komponen GlassPanel ditambahkan di sini
 function GlassPanel({ className, children }: React.ComponentProps<"div">) {
   return (
     <div
@@ -110,6 +110,8 @@ export default function PetComponent({ pet }: PetDashboardProps) {
       </div>
     );
 
+  const isAnyActionPending = isFeeding || isPlaying || isWorking || isSleeping || isWakingUp || isLevelingUp;
+
   const canFeed =
     !pet.isSleeping &&
     pet.stats.hunger < gameBalance.max_stat &&
@@ -156,12 +158,13 @@ export default function PetComponent({ pet }: PetDashboardProps) {
         <GlassPanel className="w-80 p-6 flex flex-col justify-between">
           <div>
             <div className="flex justify-center gap-10 text-gray-300 text-sm font-semibold mb-4">
-              <span>Health</span>
-              <span>Love</span>
               <span>Energy</span>
+              <span>Happiness</span>
+              <span>Hunger</span>
             </div>
 
             <div className="space-y-4 mb-8">
+              {/* ✅ Prop 'max' ditambahkan */}
               <StatDisplay
                 icon={<BatteryIcon className="text-green-500" />}
                 label="Energy"
@@ -185,7 +188,7 @@ export default function PetComponent({ pet }: PetDashboardProps) {
             <div className="space-y-3">
               <Button
                 onClick={() => mutateLevelUp({ petId: pet.id })}
-                disabled={!canLevelUp || isLevelingUp} 
+                disabled={!canLevelUp || isAnyActionPending}
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg flex items-center justify-center transition-all duration-200"
               >
                 {isLevelingUp ? (
@@ -198,7 +201,7 @@ export default function PetComponent({ pet }: PetDashboardProps) {
 
               <ActionButton
                 onClick={() => mutateFeedPet({ petId: pet.id })}
-                disabled={!canFeed || isFeeding}
+                disabled={!canFeed || isAnyActionPending}
                 isPending={isFeeding}
                 label="Feed"
                 icon={<DrumstickIcon className="w-5 h-5" />}
@@ -206,7 +209,7 @@ export default function PetComponent({ pet }: PetDashboardProps) {
               />
               <ActionButton
                 onClick={() => mutatePlayWithPet({ petId: pet.id })}
-                disabled={!canPlay || isPlaying}
+                disabled={!canPlay || isAnyActionPending}
                 isPending={isPlaying}
                 label="Play"
                 icon={<PlayIcon className="w-5 h-5" />}
@@ -214,7 +217,7 @@ export default function PetComponent({ pet }: PetDashboardProps) {
               />
               <ActionButton
                 onClick={() => mutateWorkForCoins({ petId: pet.id })}
-                disabled={!canWork || isWorking}
+                disabled={!canWork || isAnyActionPending}
                 isPending={isWorking}
                 label="Work"
                 icon={<BriefcaseIcon className="w-5 h-5" />}
@@ -224,7 +227,7 @@ export default function PetComponent({ pet }: PetDashboardProps) {
               {pet.isSleeping ? (
                 <Button
                   onClick={() => mutateWakeUpPet({ petId: pet.id })}
-                  disabled={isWakingUp}
+                  disabled={isAnyActionPending}
                   className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 rounded-lg flex items-center justify-center transition-all duration-200"
                 >
                   {isWakingUp ? (
@@ -237,7 +240,7 @@ export default function PetComponent({ pet }: PetDashboardProps) {
               ) : (
                 <Button
                   onClick={() => mutateLetPetSleep({ petId: pet.id })}
-                  disabled={isSleeping}
+                  disabled={isAnyActionPending}
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg flex items-center justify-center transition-all duration-200"
                 >
                   {isSleeping ? (
@@ -254,7 +257,7 @@ export default function PetComponent({ pet }: PetDashboardProps) {
           <div className="mt-4">
             <WardrobeManager
               pet={pet}
-              isAnyActionPending={isFeeding || isPlaying || isWorking || isSleeping}
+              isAnyActionPending={isAnyActionPending}
             />
           </div>
         </GlassPanel>

@@ -12,7 +12,8 @@ import { MODULE_NAME, PACKAGE_ID } from "@/constants/contract";
 import { queryKeyEquippedAccessory } from "./useQueryEquippedAccessory";
 import { queryKeyOwnedAccessories } from "./useQueryOwnedAccessories";
 
-const mutateKeyEquipAccessory = ["mutate", "unequip-accessory"];
+// ✅ Nama variabel diubah untuk keunikan
+const mutateKeyUnequipAccessory = ["mutate", "unequip-accessory"];
 
 type UseMutateUnequipAccessory = {
   petId: string;
@@ -25,7 +26,7 @@ export function UseMutateUnequipAccessory() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: mutateKeyEquipAccessory,
+    mutationKey: mutateKeyUnequipAccessory, // ✅ Menggunakan key yang unik
     mutationFn: async ({ petId }: UseMutateUnequipAccessory) => {
       if (!currentAccount) throw new Error("No connected account");
 
@@ -54,7 +55,7 @@ export function UseMutateUnequipAccessory() {
       queryClient.invalidateQueries({ queryKey: queryKeyEquippedAccessory });
     },
     onError: (error) => {
-      console.error("Error feeding pet:", error);
+      console.error("Error unequipping accessory:", error);
       toast.error(`Error unequipping accessory: ${error.message}`);
     },
   });
